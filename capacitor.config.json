@@ -3,11 +3,7 @@
   "appName": "AppPeli",
   "bundledWebRuntime": false,
   "npmClient": "npm",
+  "linuxAndroidStudioPath": "/snap/android-studio/current/android-studio/bin/studio.sh",
   "webDir": "www",
-  "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 0
-    }
-  },
   "cordova": {}
 }

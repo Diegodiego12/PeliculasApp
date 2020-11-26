@@ -1,0 +1,45 @@
+
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Peliculas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+
+<ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-icon slot="start" name="contrast-sharp"></ion-icon>
+        <ion-label>Modo Oscuro</ion-label>
+        <ion-toggle slot="end" [ngModel]="darkMode" (ionChange)="change()"></ion-toggle>
+      </ion-item>
+    </ion-list>
+    <ion-searchbar [(ngModel)]='term'  (ionChange)='searchChanged($event)' placeholder="Buscar" color="light dark"></ion-searchbar>
+  
+  <ion-item>
+    <ion-label>Tipo de busqueda</ion-label>
+    <ion-select [(ngModel)]='type' (ionChange)='searchChanged($event)'>
+      <ion-select-option selected='true' value=''>Todos</ion-select-option>
+      <ion-select-option  value='movie'>Peliculas</ion-select-option>
+      <ion-select-option  value='series'>Series</ion-select-option>
+      <ion-select-option  value='episode'>Episodios</ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+  <ion-list color="dark">
+    <ion-item button *ngFor="let peli of (results | async)" [routerLink]="['/detalle/' , peli.imdbID]"><ion-avatar slot='start'>
+        <img src="{{peli.Poster}}" alt="{{peli.Title}}" *ngIf='peli.Poster != "N/A"'>
+      </ion-avatar>
+      <ion-label text-wrap>
+        <h3>{{peli.Title}}</h3>
+        {{peli.Year}}
+      </ion-label>
+      <ion-icon slot='end' *ngIf="peli.Type == 'movie'" name='videocam'></ion-icon>
+      <ion-icon slot='end' *ngIf="peli.Type == 'series'" name='tv-outline'></ion-icon>
+      <ion-icon slot='end' *ngIf="peli.Type == 'episode'"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+
